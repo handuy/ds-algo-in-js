@@ -127,6 +127,29 @@ class SinglyLinkedList {
         }
         this.length++
     }
+
+    Get(index){
+        if (index < 0 || index >= this.length) {
+            return null
+        }
+
+        let count = 0
+        let result = this.head
+        while(count < index){
+            result = result.pointer
+            count++
+        }
+        return result
+    }
+
+    Set(index, val){
+        let foundNode = this.Get(index)
+        if (foundNode == null) {
+            return null
+        }
+
+        foundNode.val = val
+    }
 }
 
 let newSinglyLinkedList = new SinglyLinkedList()
@@ -136,10 +159,11 @@ newSinglyLinkedList.Push(3)
 newSinglyLinkedList.Push(4)
 // console.log( newSinglyLinkedList.Pop() )
 // console.log( newSinglyLinkedList.Pop() )
-console.log( newSinglyLinkedList.Shift() )
-console.log( newSinglyLinkedList.Shift() )
-console.log( newSinglyLinkedList.Shift() )
-console.log( newSinglyLinkedList.Shift() )
-console.log( newSinglyLinkedList.Unshift(5) )
+// console.log( newSinglyLinkedList.Shift() )
+// console.log( newSinglyLinkedList.Shift() )
+// console.log( newSinglyLinkedList.Shift() )
+// console.log( newSinglyLinkedList.Shift() )
+// console.log( newSinglyLinkedList.Unshift(5) )
 // console.log( newSinglyLinkedList.Unshift(6) )
+console.log(newSinglyLinkedList.Set(2, 1000))
 console.log(newSinglyLinkedList)
