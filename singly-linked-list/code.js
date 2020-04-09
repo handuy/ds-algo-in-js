@@ -77,6 +77,7 @@ class SinglyLinkedList {
         // Sau đó lại lấy node ngay sau nextNode: nextNodeOfNextNode
         // Nếu nextNodeOfNextNode = null thì chứng tỏ currentNode là node áp chót
         // Còn nếu nextNodeOfNextNode != null thì cập nhật currentNode = node tiếp theo
+        // Do phải dò từng node một nên là độ phức tạp thuật toán là O(n)
         let currentNode = this.head
         while(true) {
             let nextNode = currentNode.pointer
@@ -90,6 +91,42 @@ class SinglyLinkedList {
             currentNode = currentNode.pointer
         }
     }
+
+    Shift(){
+        let currentHead
+
+        if (this.length == 0) {
+            return null
+        }
+
+        if (this.length == 1) {
+            currentHead = this.head
+            this.head = null
+            this.tail = null
+            this.length--
+            return currentHead
+        }
+
+        currentHead = this.head
+        let newHead = currentHead.pointer
+
+        this.head = newHead
+        this.length--
+
+        return currentHead
+    }
+
+    Unshift(val){
+        let newNode = new Node(val)
+        let currentHead = this.head
+
+        newNode.pointer = currentHead
+        this.head = newNode
+        if (currentHead == null) {
+            this.tail = newNode
+        }
+        this.length++
+    }
 }
 
 let newSinglyLinkedList = new SinglyLinkedList()
@@ -97,8 +134,12 @@ newSinglyLinkedList.Push(1)
 newSinglyLinkedList.Push(2)
 newSinglyLinkedList.Push(3)
 newSinglyLinkedList.Push(4)
-console.log( newSinglyLinkedList.Pop() )
-console.log( newSinglyLinkedList.Pop() )
-console.log( newSinglyLinkedList.Pop() )
-console.log( newSinglyLinkedList.Pop() )
+// console.log( newSinglyLinkedList.Pop() )
+// console.log( newSinglyLinkedList.Pop() )
+console.log( newSinglyLinkedList.Shift() )
+console.log( newSinglyLinkedList.Shift() )
+console.log( newSinglyLinkedList.Shift() )
+console.log( newSinglyLinkedList.Shift() )
+console.log( newSinglyLinkedList.Unshift(5) )
+// console.log( newSinglyLinkedList.Unshift(6) )
 console.log(newSinglyLinkedList)
