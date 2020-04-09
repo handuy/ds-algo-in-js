@@ -59,11 +59,46 @@ class SinglyLinkedList {
     // B1.2: length = 1 --> cập nhật head, tail = null, length = 0
     // B1.3: length > 1
     // B2: Phải lấy ra được node áp chót, là node có pointer trỏ đến node cuối cùng
-    
+    Pop(){
+        if (this.length == 0) {
+            return null
+        }
+
+        if (this.length == 1) {
+            let lastNode = this.head
+            this.head = null
+            this.tail = null
+            this.length = 0
+            return lastNode
+        }
+
+        // Bắt đầu từ node đầu tiên (currentNode)
+        // Tiến hành lấy node ngay sau node đầu (nextNode)
+        // Sau đó lại lấy node ngay sau nextNode: nextNodeOfNextNode
+        // Nếu nextNodeOfNextNode = null thì chứng tỏ currentNode là node áp chót
+        // Còn nếu nextNodeOfNextNode != null thì cập nhật currentNode = node tiếp theo
+        let currentNode = this.head
+        while(true) {
+            let nextNode = currentNode.pointer
+            let nextNodeOfNextNode = nextNode.pointer
+            if (nextNodeOfNextNode == null) {
+                currentNode.pointer = null
+                this.tail = currentNode
+                this.length--
+                return nextNode
+            }
+            currentNode = currentNode.pointer
+        }
+    }
 }
 
 let newSinglyLinkedList = new SinglyLinkedList()
 newSinglyLinkedList.Push(1)
 newSinglyLinkedList.Push(2)
 newSinglyLinkedList.Push(3)
+newSinglyLinkedList.Push(4)
+console.log( newSinglyLinkedList.Pop() )
+console.log( newSinglyLinkedList.Pop() )
+console.log( newSinglyLinkedList.Pop() )
+console.log( newSinglyLinkedList.Pop() )
 console.log(newSinglyLinkedList)
