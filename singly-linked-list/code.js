@@ -150,6 +150,56 @@ class SinglyLinkedList {
 
         foundNode.val = val
     }
+
+    Insert(index, val){
+        if (index < 0 || index > this.length){
+            return false
+        }
+
+        if (index == 0) {
+            this.Unshift(val)
+            return this
+        }
+
+        if (index == this.length) {
+            this.Push(val)
+            return this
+        }
+
+        let newNode = new Node(val)
+        let nodeAtIndex = this.Get(index)
+        let nodeAtPreviousIndex = this.Get(index-1)
+
+        nodeAtPreviousIndex.pointer = newNode
+        newNode.pointer = nodeAtIndex
+        this.length++
+        return this
+    }
+
+    Remove(index){
+        if (index < 0 || index >= this.length){
+            return false
+        }
+
+        if (index == 0) {
+            this.Shift()
+            return this
+        }
+
+        if (index == length -1) {
+            this.Pop()
+            return this
+        }
+
+        let nodeAtIndex = this.Get(index)
+        let nodeBefore = this.Get(index-1)
+        let nodeAfter = this.Get(index+1)
+
+        nodeBefore.pointer = nodeAfter
+        nodeAtIndex.pointer = null
+        this.length--
+        return this
+    }
 }
 
 let newSinglyLinkedList = new SinglyLinkedList()
@@ -165,5 +215,6 @@ newSinglyLinkedList.Push(4)
 // console.log( newSinglyLinkedList.Shift() )
 // console.log( newSinglyLinkedList.Unshift(5) )
 // console.log( newSinglyLinkedList.Unshift(6) )
-console.log(newSinglyLinkedList.Set(2, 1000))
-console.log(newSinglyLinkedList)
+console.log(newSinglyLinkedList.Remove(1))
+console.log(newSinglyLinkedList.Remove(0))
+// console.log(newSinglyLinkedList)
