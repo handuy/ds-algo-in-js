@@ -200,6 +200,37 @@ class SinglyLinkedList {
         this.length--
         return this
     }
+
+    Reverse(){
+        if (this.length <= 1) {
+            return this
+        }
+
+        let previousNode = this.Get(0)
+        let currentNode = this.Get(1)
+        let oldNextNode
+
+        previousNode.pointer = null
+        this.tail = previousNode
+        while(true){
+            oldNextNode = currentNode.pointer
+            currentNode.pointer = previousNode
+
+            if (oldNextNode == null) {
+                this.head = currentNode
+                return this
+            }
+
+            if (oldNextNode.pointer == null) {
+                oldNextNode.pointer = currentNode
+                this.head = oldNextNode
+                return this
+            }
+
+            previousNode = currentNode
+            currentNode = oldNextNode
+        }
+    }
 }
 
 let newSinglyLinkedList = new SinglyLinkedList()
@@ -215,6 +246,6 @@ newSinglyLinkedList.Push(4)
 // console.log( newSinglyLinkedList.Shift() )
 // console.log( newSinglyLinkedList.Unshift(5) )
 // console.log( newSinglyLinkedList.Unshift(6) )
-console.log(newSinglyLinkedList.Remove(1))
-console.log(newSinglyLinkedList.Remove(0))
+// console.log(newSinglyLinkedList.Remove(1))
+console.log(newSinglyLinkedList.Reverse())
 // console.log(newSinglyLinkedList)
