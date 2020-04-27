@@ -47,9 +47,30 @@ class DoublyLinkedList {
         let currentLastNode = this.tail
         let newLastNode = currentLastNode.previous
         newLastNode.next = null
+        currentLastNode.previous = null
         this.tail = newLastNode
         this.length--
-        currentLastNode.previous = null
+        return this
+    }
+
+    Shift(){
+        if (this.length == 0) {
+            return undefined
+        }
+
+        if (this.length == 1) {
+            this.head = null
+            this.tail = null
+            this.length--
+            return this
+        }
+
+        let currentHeadNode = this.head
+        let newHeadNode = currentHeadNode.next
+        newHeadNode.previous = null
+        currentHeadNode.next = null
+        this.head = newHeadNode
+        this.length--
         return this
     }
 }
@@ -59,9 +80,8 @@ newDoublyLinkedList.Push(1)
 newDoublyLinkedList.Push(2)
 newDoublyLinkedList.Push(3)
 newDoublyLinkedList.Push(4)
+newDoublyLinkedList.Push(5)
 newDoublyLinkedList.Pop()
-newDoublyLinkedList.Pop()
-newDoublyLinkedList.Pop()
-newDoublyLinkedList.Pop()
-newDoublyLinkedList.Pop()
+newDoublyLinkedList.Shift()
+newDoublyLinkedList.Shift()
 console.log(newDoublyLinkedList)
