@@ -33,7 +33,24 @@ class DoublyLinkedList {
     }
 
     Pop(){
-        
+        if (this.length == 0) {
+            return undefined
+        }
+
+        if (this.length == 1) {
+            this.head = null
+            this.tail = null
+            this.length--
+            return this
+        }
+
+        let currentLastNode = this.tail
+        let newLastNode = currentLastNode.previous
+        newLastNode.next = null
+        this.tail = newLastNode
+        this.length--
+        currentLastNode.previous = null
+        return this
     }
 }
 
@@ -42,4 +59,9 @@ newDoublyLinkedList.Push(1)
 newDoublyLinkedList.Push(2)
 newDoublyLinkedList.Push(3)
 newDoublyLinkedList.Push(4)
+newDoublyLinkedList.Pop()
+newDoublyLinkedList.Pop()
+newDoublyLinkedList.Pop()
+newDoublyLinkedList.Pop()
+newDoublyLinkedList.Pop()
 console.log(newDoublyLinkedList)
