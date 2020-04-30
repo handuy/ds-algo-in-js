@@ -91,6 +91,42 @@ class DoublyLinkedList {
         this.length++
         return this
     }
+
+    Get(index){
+        if (index < 0 || index >= this.length) {
+            return null
+        }
+
+        if (index == 0) {
+            return this.head
+        }
+
+        if (index == this.length - 1) {
+            return this.tail
+        }
+
+        let median = this.length / 2
+        let counter;
+        let result;
+
+        if (index < median) {
+            counter = 0
+            result = this.head
+            while(counter != index) {
+                result = result.next
+                counter++
+            }
+        } else {
+            counter = this.length - 1
+            result = this.tail
+            while(counter != index) {
+                result = result.previous
+                counter--
+            }
+        }
+
+        return result
+    }
 }
 
 let newDoublyLinkedList = new DoublyLinkedList()
@@ -99,9 +135,9 @@ newDoublyLinkedList.Push(2)
 newDoublyLinkedList.Push(3)
 newDoublyLinkedList.Push(4)
 newDoublyLinkedList.Push(5)
-newDoublyLinkedList.Pop()
-newDoublyLinkedList.Shift()
-newDoublyLinkedList.Shift()
-newDoublyLinkedList.Unshift(6)
-newDoublyLinkedList.Unshift(7)
-console.log(newDoublyLinkedList)
+// newDoublyLinkedList.Pop()
+// newDoublyLinkedList.Shift()
+// newDoublyLinkedList.Shift()
+// newDoublyLinkedList.Unshift(6)
+// newDoublyLinkedList.Unshift(7)
+console.log(newDoublyLinkedList.Get(4))
