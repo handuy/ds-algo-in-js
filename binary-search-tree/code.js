@@ -7,11 +7,11 @@ class Node {
 }
 
 class BST {
-    constructor(){
+    constructor() {
         this.root = null
     }
 
-    Insert(val){
+    Insert(val) {
         let newNode = new Node(val)
         if (this.root == null) {
             this.root = newNode
@@ -37,12 +37,34 @@ class BST {
             }
         }
     }
+
+    Find(val) {
+        if (this.root == null) {
+            return null
+        }
+
+        let comparedNode = this.root
+        while(true) {
+            if (val == comparedNode.value) {
+                return comparedNode
+            } else if (val > comparedNode.value) {
+                if (comparedNode.right == null) {
+                    return null
+                }
+                comparedNode = comparedNode.right
+            } else {
+                if (comparedNode.left == null) {
+                    return null
+                }
+                comparedNode = comparedNode.left
+            }
+        }
+
+    }
 }
 
 let newBST = new BST()
 newBST.Insert(6)
-newBST.Insert(6)
-newBST.Insert(8)
 newBST.Insert(8)
 newBST.Insert(4)
 newBST.Insert(3)
@@ -51,4 +73,4 @@ newBST.Insert(5)
 newBST.Insert(7)
 newBST.Insert(10)
 newBST.Insert(2)
-console.log(newBST)
+console.log( newBST.Find(4) )
